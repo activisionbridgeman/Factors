@@ -5,7 +5,26 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int i = -1;
+    while (i < 0) {
+        std::cout << "Enter a positive integer value: ";
+        std::cin >> i;
+
+        if (i < 0) {
+            std::cout << "Integer must be positive. Please try again.\n";
+        }
+    }
+
+    std::cout << "Factors:\n";
+
+    for (int j = 1; j <= sqrt(i); j++) {
+        if (i % j == 0) {
+            std::cout << j << '\n';
+            if (j != i / j) {
+                std::cout << i / j << '\n';
+            }
+        }
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
