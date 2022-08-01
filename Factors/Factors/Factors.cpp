@@ -1,7 +1,26 @@
 // Factors.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Enter positive integer and return all of its factors
 //
 
 #include <iostream>
+#include <vector>
+
+// Return a vector of all of a positive integer's factors
+std::vector<int> findFactors(int num) 
+{
+    std::vector<int> factors(num);
+
+    for (int i = 1; i <= sqrt(num); i++) {
+        if (num % i == 0) {
+            factors[i - 1] = i;
+            if (i != num / i) {
+                factors[num / i - 1] = num / i;
+            }
+        }
+    }
+
+    return factors;
+}
 
 int main()
 {
@@ -17,12 +36,13 @@ int main()
 
     std::cout << "Factors:\n";
 
-    for (int j = 1; j <= sqrt(i); j++) {
-        if (i % j == 0) {
-            std::cout << j << '\n';
-            if (j != i / j) {
-                std::cout << i / j << '\n';
-            }
+    std::vector<int> factors = findFactors(i);
+
+    for (int i = 0; i < (int) factors.size(); i++)
+    {
+        if (factors[i] != 0) 
+        {
+            std::cout << factors[i] << '\n';
         }
     }
 }
